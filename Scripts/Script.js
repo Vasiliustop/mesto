@@ -46,6 +46,7 @@ function formSubmitHandler (evt) {
   profTitle.textContent = profileName.value;
   profSubtitle.textContent = profileJob.value;
   overlay.classList.remove(overActiveClass);
+  
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
