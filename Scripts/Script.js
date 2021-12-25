@@ -1,7 +1,7 @@
 
 const openPopup = document.querySelector('.profile__edit-button');
-const overActiveClass = 'overlay_active';
-const overlay = document.querySelector('.overlay');
+const overActiveClass = 'popup_active';
+const overlay = document.querySelector('.popup');
 const closeButton = document.querySelector('.popup__close-button');
 const likeUse = document.querySelectorAll('.elements__element-button');
 const aktiveLike = 'elements__element-button_aktive';
