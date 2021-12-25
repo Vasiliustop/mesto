@@ -16,7 +16,7 @@ for(let i = 0; i < likeUse.length; i ++) {
 
 openPopup.addEventListener('click', function()
 {overlay.classList.add(overActiveClass);
-document.body.style.overflow = 'hidden';
+
   profileName.value = profTitle.textContent;
   profileJob.value = profSubtitle.textContent;
 });
@@ -24,13 +24,13 @@ document.body.style.overflow = 'hidden';
 
 closeButton.addEventListener('click', function() {
 overlay.classList.remove(overActiveClass);
-document.body.style.overflow = '';
+
 });
 
 document.addEventListener('keydown', function(evt)
   { if (evt.code === 'Escape') {
     overlay.classList.remove(overActiveClass); }
-    document.body.style.overflow = '';
+    
 });
 
 
@@ -46,7 +46,7 @@ function formSubmitHandler (evt) {
   profTitle.textContent = profileName.value;
   profSubtitle.textContent = profileJob.value;
   overlay.classList.remove(overActiveClass);
-  
+
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
