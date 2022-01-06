@@ -1,4 +1,3 @@
-
 const openPopup = document.querySelector('.profile__edit-button');
 const overActiveClass = 'popup_active';
 const overlay = document.querySelector('.popup');
@@ -15,7 +14,7 @@ openPopup.addEventListener('click', openPop);
 
 function closePop() {
   overlay.classList.remove(overActiveClass);
-  }
+  };
 
 closeButton.addEventListener('click', closePop);
 
