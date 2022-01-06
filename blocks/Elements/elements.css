@@ -9,7 +9,7 @@
   justify-content: center;
 }
 
-@media (max-width: 597px)  {
+@media (max-width: 597px) {
   .elements {
     margin: 36px auto 0;
   }
