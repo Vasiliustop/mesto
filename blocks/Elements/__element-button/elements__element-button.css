@@ -10,5 +10,5 @@
 
 .elements__element-button:hover {
   cursor: pointer;
-  opacity: .8;
+  opacity: .5;
 }

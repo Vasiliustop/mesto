@@ -10,7 +10,7 @@
 
 .profile__add-button:hover {
   cursor: pointer;
-  opacity: .8;
+  opacity: .6;
 }
 
 @media (max-width: 896px)  {
