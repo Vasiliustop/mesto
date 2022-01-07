@@ -5,9 +5,9 @@ const closeButton = document.querySelector('.popup__close-button');
 const likeUse = document.querySelectorAll('.elements__element-button');
 
 function openPop() {
-  overlay.classList.add(overActiveClass);
   profileName.value = profTitle.textContent;
   profileJob.value = profSubtitle.textContent;
+  overlay.classList.add(overActiveClass);
 };
 
 openPopup.addEventListener('click', openPop);
