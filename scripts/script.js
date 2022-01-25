@@ -1,6 +1,6 @@
 const profileOpenButton = document.querySelector('.profile__edit-button');              // редактирование профиля
 const overActiveClass = 'popup_active';
-const profilePopup = document.querySelector('.profile_popup');
+const profilePopup = document.querySelector('.popup_profile');
 const closeButtons = document.querySelectorAll('.popup__close-button');           // кнопки закрытия попапов.
 const addImage = document.querySelector('.profile__add-button');                 // кнопка добавления карточек
 const addCardPopup = document.querySelector('.popup_type_place');                // попап добавления карт
