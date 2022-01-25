@@ -1,62 +1,71 @@
-const openPopup = document.querySelector('.profile__edit-button');              // редактирование профиля
+const profileOpenButton = document.querySelector('.profile__edit-button');              // редактирование профиля
 const overActiveClass = 'popup_active';
-const overlay = document.querySelector('.popup');
-const closeButton = document.querySelectorAll('.popup__close-button');           // кнопки закрытия попапов.
+const profilePopup = document.querySelector('.profile_popup');
+const closeButtons = document.querySelectorAll('.popup__close-button');           // кнопки закрытия попапов.
 const addImage = document.querySelector('.profile__add-button');                 // кнопка добавления карточек
-const popupTwo = document.querySelector('.popup_two');
+const addCardPopup = document.querySelector('.popup_type_place');                // попап добавления карт
 
-function openPop() {
+function openProfilePopup() {
   profileName.value = profTitle.textContent;
   profileJob.value = profSubtitle.textContent;
-  overlay.classList.add(overActiveClass);
+  openPopup(profilePopup);
 };
 
-openPopup.addEventListener('click', openPop);
+function openPopup(popup) {
+  popup.classList.add(overActiveClass);
+}
 
-function closePop() {
-  overlay.classList.remove(overActiveClass);
-  popupTwo.classList.remove(overActiveClass);
-  pictureModal.classList.remove(overActiveClass);
+profileOpenButton.addEventListener('click', openProfilePopup);
+
+function closePopup() {
+  const openedPopup = document.querySelector('.popup_active');
+  openedPopup.classList.remove(overActiveClass);
 };
+
+closeButtons.forEach(function (close) {
+  close.addEventListener('click', closePopup);
+});
 
 document.addEventListener('keydown', function(evt) {
+  const openedPopup = document.querySelector('.popup_active');
   if (evt.code === 'Escape') {
-    overlay.classList.remove(overActiveClass);
-    popupTwo.classList.remove(overActiveClass);
-    pictureModal.classList.remove(overActiveClass);
+  closePopup(openedPopup);
    }
 });
 
-let profTitle = document.querySelector('.profile__title');
-let profSubtitle = document.querySelector('.profile__subtitle');
-let profileName = document.querySelector('.popup__input_type_name');
-let profileJob = document.querySelector('.popup__input_type_job');
-let formElement = document.querySelector('.popup__inputform');
+const profTitle = document.querySelector('.profile__title');
+const profSubtitle = document.querySelector('.profile__subtitle');
+const profileName = document.querySelector('.popup__input_type_name');
+const profileJob = document.querySelector('.popup__input_type_job');
+const profileForm = document.querySelector('.popup__inputform');
 
-function formSubmitHandler (evt) {
+function hanldeProfileFormSubmit (evt) {
   evt.preventDefault();
   profTitle.textContent = profileName.value;
   profSubtitle.textContent = profileJob.value;
-  overlay.classList.remove(overActiveClass);
+  closePopup();
+
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+profileForm.addEventListener('submit', hanldeProfileFormSubmit);
 
-let formAddCard = document.querySelector('.popup__inputformcards');    // вторая форма
-let nameCards = document.querySelector('.popup__input_type_namecards');    // имя новой карточки
-let linkInput = document.querySelector('.popup__input_type_link');         // ссылка для новой карточки
+const formAddCard = document.querySelector('.popup__inputformcards');    // вторая форма
+const nameCards = document.querySelector('.popup__input_type_namecards');    // имя новой карточки
+const linkInput = document.querySelector('.popup__input_type_link');         // ссылка для новой карточки
 
-function formAddHandler (evt) {
+function handleAddFormSubmit (evt) {
   evt.preventDefault();
-  let pictureObj = {
+  const pictureObj = {
     name: nameCards.value,
     link: linkInput.value
   };
-  newCard(pictureObj);
-  closePop();
+  renderCard(pictureObj)
+  closePopup();
+  nameCards.value = "";
+  linkInput.value = "";
 }
 
-formAddCard.addEventListener('submit', formAddHandler);
+formAddCard.addEventListener('submit', handleAddFormSubmit);
 
 const initialCards = [
   {
@@ -90,49 +99,54 @@ const pictureModal = document.querySelector('.popup_type_picture');   // Отк�
 const pictureImg = pictureModal.querySelector('.popup__picture');
 const pictureDescription = pictureModal.querySelector('.popup__picture-description');
 
-function newCard (item) {
+function createCard (item) {
 
   const cardElement = cardTemp.querySelector('.elements__card').cloneNode(true);   // клонируем содержимое template
   const deleteButton = cardElement.querySelector('.elements__delete-button');  // кнопка удаления
-  const likeUse = cardElement.querySelector('.elements__element-button');     // кнопка лайка
+  const likeButton = cardElement.querySelector('.elements__element-button');     // кнопка лайка
   const cardImage = cardElement.querySelector('.elements__rectagle');
   const cardTitle = cardElement.querySelector('.elements__element-title');
 
   cardImage.src = item.link;
+  cardImage.alt = item.name;
   cardTitle.textContent = item.name;
 
-  cardImage.addEventListener('click', () => {bigPicture()});
+
+  cardImage.addEventListener('click', () => {handleImageClick()});
 
   deleteButton.addEventListener('click', (evt) => {            // удаление карточки
     evt.target.closest('.elements__card').remove()
   })
 
-  likeUse.addEventListener('click', (evt) => {                 // лайки
+  likeButton.addEventListener('click', (evt) => {                 // лайки
     evt.target.classList.toggle('elements__element-button_aktive')
   });
 
-  function bigPicture() {
+  function handleImageClick() {
     pictureImg.src = item.link;
+    pictureImg.alt= item.name;
     pictureDescription.textContent = item.name;
-    modalOpen();
+
+    openImagePopup();
   }
 
+  return cardElement;
+}
+
+function renderCard(item) {
+  const cardElement = createCard(item)
   elements.prepend(cardElement);
 }
 
-initialCards.forEach(newCard);
+initialCards.forEach(renderCard);
 
 function openAddImage() {
-  popupTwo.classList.add(overActiveClass);
+  addCardPopup.classList.add(overActiveClass);
 };
 
 addImage.addEventListener('click', openAddImage);
 
-closeButton.forEach(close => {
-  close.addEventListener('click', closePop)
-});
-
-function modalOpen () {
+function openImagePopup () {
   pictureModal.classList.add(overActiveClass);
 }
 
