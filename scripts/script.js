@@ -19,17 +19,19 @@ profileOpenButton.addEventListener('click', openProfilePopup);
 
 function closePopup() {
   const openedPopup = document.querySelector('.popup_active');
-  openedPopup.classList.remove(overActiveClass);
+  if (openedPopup) {
+    openedPopup.classList.remove(overActiveClass);
+  }
 };
 
-closeButtons.forEach(function (close) {
-  close.addEventListener('click', closePopup);
+closeButtons.forEach(function (button) {
+  button.addEventListener('click', closePopup);
 });
 
 document.addEventListener('keydown', function(evt) {
-  const openedPopup = document.querySelector('.popup_active');
   if (evt.code === 'Escape') {
-  closePopup(openedPopup);
+    const openedPopup = document.querySelector('.popup_active');
+    closePopup(openedPopup);
    }
 });
 
@@ -112,10 +114,10 @@ function createCard (item) {
   cardTitle.textContent = item.name;
 
 
-  cardImage.addEventListener('click', () => {handleImageClick()});
+  cardImage.addEventListener('click', handleImageClick);
 
-  deleteButton.addEventListener('click', (evt) => {            // удаление карточки
-    evt.target.closest('.elements__card').remove()
+  deleteButton.addEventListener('click', () => {            // удаление карточки
+    cardElement.remove()
   })
 
   likeButton.addEventListener('click', (evt) => {                 // лайки
@@ -126,7 +128,6 @@ function createCard (item) {
     pictureImg.src = item.link;
     pictureImg.alt= item.name;
     pictureDescription.textContent = item.name;
-
     openImagePopup();
   }
 
@@ -141,13 +142,13 @@ function renderCard(item) {
 initialCards.forEach(renderCard);
 
 function openAddImage() {
-  addCardPopup.classList.add(overActiveClass);
+  openPopup(addCardPopup);
 };
 
 addImage.addEventListener('click', openAddImage);
 
 function openImagePopup () {
-  pictureModal.classList.add(overActiveClass);
+  openPopup(pictureModal);
 }
 
 
@@ -155,7 +156,7 @@ function openImagePopup () {
 
 
 
-12
+
 
 
 
