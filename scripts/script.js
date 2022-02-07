@@ -5,6 +5,24 @@ const closeButtons = document.querySelectorAll('.popup__close-button');         
 const addImage = document.querySelector('.profile__add-button');                 // кнопка добавления карточек
 const addCardPopup = document.querySelector('.popup_type_place');                // попап добавления карт
 
+// const overlay = document.querySelector('.popup')
+
+// document.addEventListener("click", function(evt) {
+//   if (evt.target === overlay) {
+//     const openedPopup = document.querySelector('.popup_active');
+//     closePopup(openedPopup);
+//  }
+// });
+
+const overlays = document.querySelectorAll('.popup')
+overlays.forEach((pop) => {
+  pop.addEventListener('mousedown', (evt) => {
+      if (evt.target.classList.contains(overActiveClass)) {
+          closePopup();
+      }
+  })
+});
+
 function openProfilePopup() {
   profileName.value = profTitle.textContent;
   profileJob.value = profSubtitle.textContent;
@@ -46,7 +64,6 @@ function hanldeProfileFormSubmit (evt) {
   profTitle.textContent = profileName.value;
   profSubtitle.textContent = profileJob.value;
   closePopup();
-
 }
 
 profileForm.addEventListener('submit', hanldeProfileFormSubmit);
@@ -54,6 +71,7 @@ profileForm.addEventListener('submit', hanldeProfileFormSubmit);
 const formAddCard = document.querySelector('.popup__inputformcards');    // вторая форма
 const nameCards = document.querySelector('.popup__input_type_namecards');    // имя новой карточки
 const linkInput = document.querySelector('.popup__input_type_link');         // ссылка для новой карточки
+const saveButton = formAddCard.querySelector('.popup__save-button');
 
 function handleAddFormSubmit (evt) {
   evt.preventDefault();
@@ -61,6 +79,8 @@ function handleAddFormSubmit (evt) {
     name: nameCards.value,
     link: linkInput.value
   };
+  saveButton.setAttribute('disabled', 'disabled');
+  saveButton.classList.add('popup__button-invalid');
   renderCard(pictureObj)
   closePopup();
   nameCards.value = "";
