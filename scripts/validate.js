@@ -12,16 +12,17 @@ function enableValidation(data) {
   forms.forEach(form => addFormListeners(form, data))
 }
 
-function addFormListeners(form, config) {
+function addFormListeners (form, config) {
 
   form.addEventListener('submit', handleSubmit)
-  form.addEventListener('input', () => setSubmitButtonState (form, config))
 
   const inputs = [...form.querySelectorAll(config.inputSelector)]
 
-  inputs.forEach(input => input.addEventListener('input', () => handleField(form, input, config)))
-
-  setSubmitButtonState(form, config)
+  inputs.forEach( (input) => {
+    input.addEventListener('input', () => handleField(form, input, config))
+    input.addEventListener('input', () => setSubmitButtonState (form, config))
+  });
+  setSubmitButtonState (form, config)
 }
 
 function handleSubmit(evt) {
