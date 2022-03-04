@@ -1,5 +1,5 @@
 import { Card } from './Card.js'
-export { openImagePopup }
+export { openImagePopup, cardImage, cardTitle }
 
 import { FormValidator } from './FormValidator.js'
 const settings = {
@@ -37,20 +37,13 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach((item) => {
-  const cardElement ={
-    name: item.name,
-    link: item.link,
 
-  }
-  renderNewCard(cardElement)
-});
 
-function renderNewCard(cardElement) {
-  const card = new Card(cardElement, '#card').generateCard();
-  document.querySelector('.elements').prepend(card)
-};
 
+
+
+
+const elementSection = document.querySelector('.elements');
 const profileOpenButton = document.querySelector('.profile__edit-button');              // редактирование профиля
 const overActiveClass = 'popup_active';
 const profilePopup = document.querySelector('.popup_profile');                     //  попап профиля
@@ -67,10 +60,12 @@ const nameCard = document.querySelector('.popup__input_type_namecards');    // �
 const linkInput = document.querySelector('.popup__input_type_link');         // ссылка для новой карточки
 const pictureModal = document.querySelector('.popup_type_picture');   // Открытая карточка
 const overlays = document.querySelectorAll('.popup')
+const cardImage = document.querySelector('.popup__picture');
+const cardTitle = document.querySelector('.popup__picture-description');
+
 const formProfileValidator = new FormValidator(settings, profileForm);
 const formCardValidator = new FormValidator(settings, formAddCard);
-formProfileValidator.enableValidation()
-formCardValidator.enableValidation()
+
 
 overlays.forEach((pop) => {
   pop.addEventListener('mousedown', (evt) => {
@@ -150,3 +145,24 @@ function openImagePopup () {
 
 
 
+
+initialCards.forEach((item) => {
+  const cardElement = {
+    name: item.name,
+    link: item.link,
+
+  }
+  renderNewCard(cardElement)
+});
+
+
+
+function renderNewCard(cardElement) {
+
+  const card = new Card(cardElement, '#card').generateCard();
+  elementSection.prepend(card)
+
+};
+
+formProfileValidator.enableValidation()
+formCardValidator.enableValidation()

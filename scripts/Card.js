@@ -1,56 +1,55 @@
-import { openImagePopup } from './index.js';
+import { openImagePopup, cardImage, cardTitle } from './index.js';
 export { Card }
  class Card {
    constructor(data, tempSelector) {
-    this.name = data.name;
-    this.link = data.link;
-    this.tempSelector = tempSelector;
+    this._name = data.name;
+    this._link = data.link;
+    this._tempSelector = tempSelector;
   }
 
-  getTemplate() {
-    const cardElement = document.querySelector(this.tempSelector).content;
+  _getTemplate() {
+    const cardElement = document.querySelector(this._tempSelector).content;
     return cardElement.querySelector('.elements__card').cloneNode(true);
   }
 
   generateCard() {
-    this.element = this.getTemplate();
-    this.element.querySelector('.elements__rectagle').src = this.link;
-    this.element.querySelector('.elements__rectagle').alt = this.name;
-    this.element.querySelector('.elements__element-title').textContent = this.name;
-    this.setEventListeners();
-    return this.element;
+    this._element = this._getTemplate();
+    this._element.querySelector('.elements__rectagle').src = this._link;
+    this._element.querySelector('.elements__rectagle').alt = this._name;
+    this._element.querySelector('.elements__element-title').textContent = this._name;
+    this._setEventListeners();
+    return this._element;
   }
 
-  methodCardImageClick() {
-    const cardImage = document.querySelector('.popup__picture');
-    const cardTitle = document.querySelector('.popup__picture-description');
-    cardImage.src = this.link;
-    cardImage.alt = this.name;
-    cardTitle.textContent = this.name;
+  _methodCardImageClick() {
+    cardImage.src = this._link;
+    cardImage.alt = this._name;
+    cardTitle.textContent = this._name;
     openImagePopup()
 }
 
-  methodLikeButton(evt) {
+  _methodLikeButton(evt) {
     evt.target.classList.toggle('elements__element-button_aktive');
 }
 
-  methodRemoveButtonClick() {
-    this.element.remove()
+  _methodRemoveButtonClick() {
+    this._element.remove()
+    this._element = null;
 }
 
-  setEventListeners() {
-    const cardImage = this.element.querySelector('.elements__rectagle');
-    const likeButton = this.element.querySelector('.elements__element-button');
-    const deleteButton = this.element.querySelector('.elements__delete-button');
+  _setEventListeners() {
+    this._cardImage = this._element.querySelector('.elements__rectagle');
+    this._likeButton = this._element.querySelector('.elements__element-button');
+    this._deleteButton = this._element.querySelector('.elements__delete-button');
 
-    cardImage.addEventListener('click', (evt) => {
-      this.methodCardImageClick(evt);
+    this._cardImage.addEventListener('click', (evt) => {
+      this._methodCardImageClick(evt);
     });
-    likeButton.addEventListener('click', (evt) => {
-      this.methodLikeButton(evt);
+    this._likeButton.addEventListener('click', (evt) => {
+      this._methodLikeButton(evt);
     });
-    deleteButton.addEventListener('click', (evt) => {
-      this.methodRemoveButtonClick(evt);
+    this._deleteButton.addEventListener('click', (evt) => {
+      this._methodRemoveButtonClick(evt);
     });
   }
 }

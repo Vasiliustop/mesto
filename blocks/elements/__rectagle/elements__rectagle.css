@@ -4,3 +4,8 @@
   height: 282px;
   min-height: 282px;
 }
+
+
+.elements__rectagle:hover {
+  cursor: zoom-in;
+}
