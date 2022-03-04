@@ -37,12 +37,6 @@ const initialCards = [
   }
 ];
 
-
-
-
-
-
-
 const elementSection = document.querySelector('.elements');
 const profileOpenButton = document.querySelector('.profile__edit-button');              // редактирование профиля
 const overActiveClass = 'popup_active';
@@ -65,7 +59,6 @@ const cardTitle = document.querySelector('.popup__picture-description');
 
 const formProfileValidator = new FormValidator(settings, profileForm);
 const formCardValidator = new FormValidator(settings, formAddCard);
-
 
 overlays.forEach((pop) => {
   pop.addEventListener('mousedown', (evt) => {
@@ -143,25 +136,17 @@ function openImagePopup () {
   openPopup(pictureModal);
 }
 
-
-
-
 initialCards.forEach((item) => {
   const cardElement = {
     name: item.name,
     link: item.link,
-
   }
   renderNewCard(cardElement)
 });
-
-
-
 function renderNewCard(cardElement) {
 
   const card = new Card(cardElement, '#card').generateCard();
   elementSection.prepend(card)
-
 };
 
 formProfileValidator.enableValidation()
