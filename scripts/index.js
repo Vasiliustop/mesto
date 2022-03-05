@@ -72,7 +72,7 @@ function openProfilePopup() {
   profileName.value = profTitle.textContent;
   profileJob.value = profSubtitle.textContent;
   openPopup(profilePopup);
-  formProfileValidator.setSubmitButtonState(profileForm)
+  formProfileValidator.setSubmitButtonState()
 };
 
 function openPopup(popup) {
@@ -127,7 +127,7 @@ formAddCard.addEventListener('submit', handleAddFormSubmit);
 
 function openAddImage() {
   openPopup(addCardPopup);
-  formCardValidator.setSubmitButtonState(formAddCard)
+  formCardValidator.setSubmitButtonState()
 };
 
 addImage.addEventListener('click', openAddImage);

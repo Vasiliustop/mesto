@@ -28,8 +28,8 @@ export { Card }
     openImagePopup()
 }
 
-  _methodLikeButton(evt) {
-    evt.target.classList.toggle('elements__element-button_aktive');
+  _methodLikeButton() {
+    this._likeButton.classList.toggle('elements__element-button_aktive');
 }
 
   _methodRemoveButtonClick() {
