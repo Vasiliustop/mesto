@@ -14,25 +14,18 @@ export { Card }
 
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector('.elements__rectagle').src = this._link;
-    this._element.querySelector('.elements__rectagle').alt = this._name;
-    this._element.querySelector('.elements__element-title').textContent = this._name;
     this._setEventListeners();
+    this._cardImage.src = this._link;
+    this._cardImage.alt = this._name;
+    this._element.querySelector('.elements__element-title').textContent = this._name;
     return this._element;
   }
 
-  _methodCardImageClick() {
-    cardImage.src = this._link;
-    cardImage.alt = this._name;
-    cardTitle.textContent = this._name;
-    openImagePopup()
-}
-
-  _methodLikeButton() {
+  _handleLikeButton() {
     this._likeButton.classList.toggle('elements__element-button_aktive');
 }
 
-  _methodRemoveButtonClick() {
+  _handleRemoveButtonClick() {
     this._element.remove()
     this._element = null;
 }
@@ -46,10 +39,10 @@ export { Card }
          this._handleCardClick(this._name, this._link)
       });
     this._likeButton.addEventListener('click', (evt) => {
-      this._methodLikeButton(evt);
+      this._handleLikeButton(evt);
     });
     this._deleteButton.addEventListener('click', (evt) => {
-      this._methodRemoveButtonClick(evt);
+      this._handleRemoveButtonClick(evt);
     });
   }
 }

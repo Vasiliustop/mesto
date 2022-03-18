@@ -11,17 +11,17 @@ import { initialCards, settings, profileOpenButton, addImageButton, profTitle, p
 const formProfileValidator = new FormValidator(settings, profileForm);
 const formCardValidator = new FormValidator(settings, formAddCard);
 
-profileOpenButton.onclick = function () {
+profileOpenButton.addEventListener('click', () => {
   const userDescription = userInfo.getUserInfo();
   profileName.value = userDescription.name;
   profileJob.value = userDescription.job
   popupProfile.open();
-}
+})
 
-addImageButton.onclick = function () {
+addImageButton.addEventListener('click', () => {
   popupAddCard.open();
   formCardValidator.setSubmitButtonState()
-}
+})
 
 const imagePopup = new PopupWithImage('.popup_type_picture');
 
