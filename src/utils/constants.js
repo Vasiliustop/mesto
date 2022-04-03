@@ -2,7 +2,7 @@ export const initialCards = [
 
   {
     name: 'Кот',
-    link:  'https://i.ibb.co/grHGVXp/image.jpg'
+    link: 'https://i.ibb.co/grHGVXp/image.jpg'
   },
   {
     name: 'Лампочка',
@@ -42,8 +42,12 @@ export const profileName = document.querySelector('.popup__input_type_name');
 export const profileJob = document.querySelector('.popup__input_type_job');
 export const profileForm = document.querySelector('.popup__inputform');
 export const formAddCard = document.querySelector('.popup__inputformcards');    // вторая форма
-export const cardImage = document.querySelector('.popup__picture');
-export const cardTitle = document.querySelector('.popup__picture-description');
+export const deleteCardButtton = document.querySelector('.elements__delete-button');
+export const deleteCardPopup = document.querySelector('.popup_type-delete');
+export const editAvatarButton = document.querySelector('.profile__edit-avatar');
+export const addAvatarForm = document.querySelector('.add-avatar-form');
+export const fotoAvatarImage = document.querySelector('.profile__image')
+
 
 
 
