@@ -26,7 +26,7 @@ export { Card }
 
   setLikes(data) {
     this._likes = data
-    this._likeCountsElement.innerHTML = this._likes.length
+    this._likeCountsElement.textContent = this._likes.length
 
     if (this.getLike()) {
       this._likeButton.classList.add('elements__element-button_aktive')

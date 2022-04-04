@@ -119,6 +119,10 @@ const popupProfile = new PopupWithForm('.popup_profile',
         userInfo.setUserInfo(data.name, data.job);
         popupProfile.close();
       })
+      .catch((err) => {
+        console.log('err', err);
+      })
+      .finally(() => popupProfile.renderLoading(false))
   }
 )
 
@@ -134,6 +138,7 @@ const popupAddCard = new PopupWithForm(
       .catch((err) => {
         console.log('err', err);
       })
+      .finally(() => popupAddCard.renderLoading(false))
   })
 
 const addAvatarPopup = new PopupWithForm('.popup_type-avatar',
@@ -150,7 +155,7 @@ const addAvatarPopup = new PopupWithForm('.popup_type-avatar',
       .catch((err) => {
         console.log('err', err);
       })
-
+      .finally(() => addAvatarPopup.renderLoading(false))
   })
 
 const imagePopup = new PopupWithImage('.popup_type_picture');
